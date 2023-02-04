@@ -29,14 +29,14 @@ public class MainPage {
     // Кнопка Яндекс лого
     private final By yandexLogo = By.xpath(".//*[contains(@class, 'Header_LogoYandex')]");
 
-    // Вопрос FAQ
-    private final By faqQuestionAccordion = By.xpath(".//*[contains(@class, 'accordion__button') and text()='Сколько это стоит? И как оплатить?']");
-
-    // Ответ FAQ
-    private final By faqAnswerAccordion = By.xpath(".//*[contains(@class, 'accordion__panel')]/*[text()='Сутки — 400 рублей. Оплата курьеру — наличными или картой.']");
-
     // Кнопка Самокат лого
     private final By samokatLogo = By.xpath(".//*[contains(@class, 'Header_LogoScooter')]");
+
+    // Вопрос FAQ
+    private final String faqQuestionTemplate = ".//*[contains(@class, 'accordion__button') and text()='%s']";
+
+    // Ответ FAQ
+    private final String faqAnswerTemplate = ".//*[contains(@class, 'accordion__panel')]/*[text()='%s']";
 
 
     public MainPage(WebDriver driver){
@@ -45,11 +45,11 @@ public class MainPage {
 
 
     // Метод проверки FAQ
-    public void unfoldAndCheckFaq() {
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(faqQuestionAccordion));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(faqQuestionAccordion));
-        driver.findElement(faqQuestionAccordion).click();
-        driver.findElement(faqAnswerAccordion).isDisplayed();
+    public void unfoldAndCheckFaq(String faqQuestion, String faqAnswer) {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(String.format(faqQuestionTemplate, faqQuestion))));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(faqQuestionTemplate, faqQuestion))));
+        driver.findElement(By.xpath(String.format(faqQuestionTemplate, faqQuestion))).click();
+        driver.findElement(By.xpath(String.format(faqAnswerTemplate, faqAnswer))).isDisplayed();
     }
 
     // Метод клика по верхней кнопке Заказать
@@ -67,7 +67,7 @@ public class MainPage {
     // Метод клика на лого Яндекса
     public void clickYandexLogo() {
         driver.findElement(yandexLogo).click();
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> tabs2 = new ArrayList<> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
     }
 

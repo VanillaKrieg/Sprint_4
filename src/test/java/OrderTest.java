@@ -14,7 +14,16 @@ import java.lang.reflect.InvocationTargetException;
 public class OrderTest {
     private WebDriver driver;
 
+    String MAIN_PAGE_LINK = "https://qa-scooter.praktikum-services.ru/";
+
     String orderButtonMethod;
+
+    String firstName = "Станислав";
+    String lastName = "Михалкин";
+    String address = "Пхукет";
+    String metro = "Лубянка";
+    String phone = "+79261255666";
+    String comment = "Тест";
 
     public OrderTest(String orderButtonMethod) {
         this.orderButtonMethod = orderButtonMethod;
@@ -36,37 +45,37 @@ public class OrderTest {
 
 
         // Переход на Главную страницу
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(MAIN_PAGE_LINK);
 
         // Создаем объект класса Главной страницы
-        MainPage objMainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(driver);
 
         // Кликаем кнопку Заказать на Главной странице с набором параметров (верхняя или нижняя)
-        MainPage.class.getMethod(orderButtonMethod).invoke(objMainPage);
+        MainPage.class.getMethod(orderButtonMethod).invoke(mainPage);
 
         // Создаем объект класса страницы Для кого самокат
-        CustomerPage objCustomerPage = new CustomerPage(driver);
+        CustomerPage customerPage = new CustomerPage(driver);
 
         // Заполняем поля на странице Для кого самокат
-        objCustomerPage.fillCustomerForm("Станислав", "Михалкин", "Пхукет", "Лубянка", "+79261255666");
+        customerPage.fillCustomerForm(firstName, lastName, address, metro, phone);
 
         // Кликаем по кнопке Далее на странице Для кого самокат
-        objCustomerPage.clickOrderNext();
+        customerPage.clickOrderNext();
 
         // Создаем объект класса страницы Про аренду
-        RentPage objRentPage = new RentPage(driver);
+        RentPage rentPage = new RentPage(driver);
 
         // Заполняем поля на странице Про аренду
-        objRentPage.fillRentForm("Тест");
+        rentPage.fillRentForm(comment);
 
         // Кликаем по кнопке Заказать на странице Про аренду
-        objRentPage.clickOrderFinal();
+        rentPage.clickOrderFinal();
 
         // Кликаем по кнопке Да во всплывающем окне подтверждения заказа
-        objRentPage.clickOrderConfirm();
+        rentPage.clickOrderConfirm();
 
         // Проверяем, что открылось окно успешного создания заказа
-        objRentPage.checkOrderConfirm();
+        rentPage.checkOrderConfirm();
     }
 
 

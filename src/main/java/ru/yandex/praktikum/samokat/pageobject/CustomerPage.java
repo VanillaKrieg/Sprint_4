@@ -94,27 +94,27 @@ public class CustomerPage {
 
     // Метод проверки на наличие ошибок заполненного поля Имя
     public void checkFilledFirstName(boolean expected) {
-        assertEquals(driver.findElement(firstNameError).isDisplayed(), expected);
+        assertEquals(expected, driver.findElement(firstNameError).isDisplayed());
     }
 
     // Метод проверки на наличие ошибок заполненного поля Фамилия
     public void checkFilledLastName(boolean expected) {
-        assertEquals(driver.findElement(lastNameError).isDisplayed(), expected);
+        assertEquals(expected, driver.findElement(lastNameError).isDisplayed());
     }
 
     // Метод проверки на наличие ошибок заполненного поля Адрес
     public void checkFilledAddress(boolean expected) {
-        assertEquals(driver.findElement(addressError).isDisplayed(), expected);
+        assertEquals(expected, driver.findElement(addressError).isDisplayed());
     }
 
     // Метод проверки на наличие ошибок заполненного поля Телефон
     public void checkFilledPhone(boolean expected) {
-        assertEquals(driver.findElement(phoneError).isDisplayed(), expected);
+        assertEquals(expected, driver.findElement(phoneError).isDisplayed());
     }
 
     // Метод проверки на наличие ошибок НЕзаполненного поля Метро
     public void checkFilledMetro(boolean expected) {
-        assertEquals(driver.findElements(metroError).size() != 0, expected);
+        assertEquals(expected, driver.findElements(metroError).size() != 0);
     }
 
     // Метод проверки на наличие ошибок всей заполненной формы

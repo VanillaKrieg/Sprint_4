@@ -33,13 +33,13 @@ public class LogoTest {
         driver.get(startingPage);
 
         // Создаем объект класса Главной страницы
-        MainPage objMainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(driver);
 
         // Кликаем на лого Яндекса
-        objMainPage.clickYandexLogo();
+        mainPage.clickYandexLogo();
 
         // Проверяем, что после клика лого открывается Главная страница Яндекса
-        objMainPage.checkYandexMainPage();
+        mainPage.checkYandexMainPage();
     }
 
     @Test
@@ -50,13 +50,13 @@ public class LogoTest {
         driver.get(startingPage);
 
         // Создаем объект класса Главной страницы
-        MainPage objMainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(driver);
 
         // Кликаем на лого Самоката
-        objMainPage.clickSamokatLogo();
+        mainPage.clickSamokatLogo();
 
         // Проверяем, что после клика лого открывается Главная страница Самоката
-        objMainPage.checkSamokatMainPage();
+        mainPage.checkSamokatMainPage();
     }
 
 

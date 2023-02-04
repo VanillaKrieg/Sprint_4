@@ -27,10 +27,10 @@ public class RentPage {
     // Кнопка Заказать
     private final By orderFinalButton = By.xpath(".//*[contains(@class, 'Order_Buttons')]/button[text()='Заказать']");
 
-    // Кнопка Заказать
+    // Кнопка Да во всплывающем окне подтверждения заказа
     private final By orderConfirmButton = By.xpath(".//*[contains(@class, 'Order_Buttons')]/button[text()='Да']");
 
-    // Кнопка Заказать
+    // Сообщение об успешном оформлении заказа
     private final By orderConfirmMessage = By.xpath(".//*[contains(@class, 'Order_ModalHeader') and text()='Заказ оформлен']");
 
 

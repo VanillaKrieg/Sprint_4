@@ -8,26 +8,29 @@ import ru.yandex.praktikum.samokat.pageobject.OrderPage;
 public class InvalidOrderIdTest {
     private WebDriver driver;
 
+    String MAIN_PAGE_LINK = "https://qa-scooter.praktikum-services.ru/";
+
+    String orderId = "dfhdcfbh";
+
     @Test
     public void checkInvalidOrderId() {
         // Драйвер Chrome
         driver = new ChromeDriver();
+
         // Переход на Главную страницу
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(MAIN_PAGE_LINK);
 
         // Создаем объект класса Главной страницы
-        MainPage objMainPage = new MainPage(driver);
-
-        String orderId = "dfhdcfbh";
+        MainPage mainPage = new MainPage(driver);
 
         // Проверяем, что FAQ раскрывается
-        objMainPage.fillAndClickStatus(orderId);
+        mainPage.fillAndClickStatus(orderId);
 
         // Создаем объект класса страницы Заказа
-        OrderPage objOrderPage = new OrderPage(driver);
+        OrderPage orderPage = new OrderPage(driver);
 
         // Проверяем, что после перехода на страницу заказа отображается сообщение Такого заказа нет
-        objOrderPage.checkInvalidOrderIdMessage();
+        orderPage.checkInvalidOrderIdMessage();
     }
 
 

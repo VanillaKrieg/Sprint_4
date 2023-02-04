@@ -10,6 +10,8 @@ import ru.yandex.praktikum.samokat.pageobject.CustomerPage;
 public class FillOrderFormTest {
     private WebDriver driver;
 
+    String ORDER_PAGE_LINK = "https://qa-scooter.praktikum-services.ru/order";
+
     String firstName;
     String lastName;
     String address;
@@ -39,21 +41,21 @@ public class FillOrderFormTest {
         // Драйвер Chrome
         driver = new ChromeDriver();
         // Переход на страницу Для кого Самокат
-        driver.get("https://qa-scooter.praktikum-services.ru/order");
+        driver.get(ORDER_PAGE_LINK);
 
         // Создаем объект класса страницы Для кого самокат
-        CustomerPage objCustomerPage = new CustomerPage(driver);
+        CustomerPage customerPage = new CustomerPage(driver);
 
         // Заполняем поля на странице Для кого самокат параметризованными данными
-        objCustomerPage.fillCustomerForm(firstName, lastName, address, metro, phone);
+        customerPage.fillCustomerForm(firstName, lastName, address, metro, phone);
 
         //Проверяем, нужно ли кликнуть по кнопке Далее при негативном наборе данных, чтобы вызвать ошибку поля Метро
         if (expected) {
-            objCustomerPage.clickOrderNext();
+            customerPage.clickOrderNext();
         }
 
         // Проверяем заполненные поля на наличие ошибки
-        objCustomerPage.checkFilledCustomerForm(expected);
+        customerPage.checkFilledCustomerForm(expected);
     }
 
 
