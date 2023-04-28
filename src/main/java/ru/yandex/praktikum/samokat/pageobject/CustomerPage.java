@@ -3,6 +3,9 @@ package ru.yandex.praktikum.samokat.pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import static org.junit.Assert.assertEquals;
 
 public class CustomerPage {
@@ -69,10 +72,10 @@ public class CustomerPage {
     public void fillMetro(String metro) {
         driver.findElement(metroInput).click();
         // Проверяем, что успел подгрузиться список всех станций
-        new WebDriverWait(driver, 3).until(driver -> (driver.findElements(metroOption).size() > 2));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(driver -> (driver.findElements(metroOption).size() > 2));
         driver.findElement(metroInput).sendKeys(metro);
         // Проверяем, что успел отфильтроваться список станций
-        new WebDriverWait(driver, 3).until(driver -> (driver.findElements(metroOption).size() < 2));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(driver -> (driver.findElements(metroOption).size() < 2));
         if (driver.findElements(metroOption).size() == 1) {
             driver.findElement(metroOption).click();
         }

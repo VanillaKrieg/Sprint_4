@@ -6,6 +6,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class MainPage {
@@ -47,7 +49,7 @@ public class MainPage {
     // Метод проверки FAQ
     public void unfoldAndCheckFaq(String faqQuestion, String faqAnswer) {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath(String.format(faqQuestionTemplate, faqQuestion))));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(faqQuestionTemplate, faqQuestion))));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(faqQuestionTemplate, faqQuestion))));
         driver.findElement(By.xpath(String.format(faqQuestionTemplate, faqQuestion))).click();
         driver.findElement(By.xpath(String.format(faqAnswerTemplate, faqAnswer))).isDisplayed();
     }
@@ -60,7 +62,7 @@ public class MainPage {
     // Метод клика по нижней кнопке Заказать
     public void clickBottomOrderButton() {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(bottomOrderButton));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(bottomOrderButton));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(bottomOrderButton));
         driver.findElement(bottomOrderButton).click();
     }
 
@@ -93,7 +95,7 @@ public class MainPage {
 
     // Метод заполнения поля Номер заказа
     public void fillOrderIdInput(String orderId) {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(orderIdInput));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(orderIdInput));
         driver.findElement(orderIdInput).sendKeys(orderId);
     }
 

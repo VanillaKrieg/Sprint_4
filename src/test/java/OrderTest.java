@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ru.yandex.praktikum.samokat.pageobject.CustomerPage;
 import ru.yandex.praktikum.samokat.pageobject.MainPage;
 import ru.yandex.praktikum.samokat.pageobject.RentPage;
@@ -40,8 +41,10 @@ public class OrderTest {
 
     @Test
     public void checkOrderCreation() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         // Драйвер Chrome
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
 
 
         // Переход на Главную страницу
